@@ -111,37 +111,25 @@
 <div class="content-fixed bg clr-brd-df wse-pg wse-pg-df clr-bkg-61" objtype="34"><div class="content-inner"><div class="wseSHBL"></div><div class="wseSHBR"></div><div class="wseSHTL"></div><div class="wseSHTR"></div></div></div></div> </div>
 
 <!-- Paste your Lex Web UI JavaScript plugin here --> 
-<script src="https://d3dif5lrjaik0z.cloudfront.net/lex-web-ui-loader.js"></script>
+<script src="https://d3dif5lrjaik0z.cloudfront.net/lex-web-ui-loader.min.js"></script>
 <script>
-    // Point the baseUrl to download the dependencies from the site hosting
-    // the loader and the chatbot UI files
-    // This url should host the JavaScript and CSS files in the dist directory
-    var loaderOpts = {
-      baseUrl: 'https://d3dif5lrjaik0z.cloudfront.net'
-    }
-    // ChatBotUiLoader contains the IframeLoader constructor
-    // Instantiate the loader and pass the loader options
-    var lexWebUiLoader = new ChatBotUiLoader.IframeLoader(loaderOpts);
-
-    // You can override the chatbot UI config by passing a parameter
-    // if the iframe page is hosted on a different site,
-    // you should configure the parentOrigin and iframeOrigin
-    var chatbotUiconfig = {
-      /*ui: {
-        // origin of the parent site where you are including the chatbot UI
-        parentOrigin: 'https://mysite.example.org'
-      },
-      iframe: {
-        // origin hosting the HTML file that will be embedded in the iframe
-        iframeOrigin: 'https://iframe-host.example.org'
-      }*/
-    };
-
-    // load the iframe
-    lexWebUiLoader.load(chatbotUiconfig)
-      .catch(function (error) {
-        console.error('chatbot UI failed to load', error);
-    });
+  var loaderOpts = {
+    baseUrl: 'https://d3dif5lrjaik0z.cloudfront.net/',
+    shouldLoadMinDeps: true
+  };
+  var loader = new ChatBotUiLoader.IframeLoader(loaderOpts);
+  var chatbotUiConfig = {
+          /* Example of setting session attributes on parent page
+          lex: {
+            sessionAttributes: {
+              userAgent: navigator.userAgent,
+              QNAClientFilter: ''
+            }
+          }
+          */
+        };
+  loader.load(chatbotUiConfig)
+    .catch(function (error) { console.error(error); });
 </script>
 <!-- End of Lex Web UI IFrame Snippet--> 
 
