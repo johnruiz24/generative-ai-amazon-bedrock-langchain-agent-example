@@ -85,7 +85,38 @@ This sample creates a Generative AI-powered Financial Services Agent that can as
 </div>
 
 <!-- Paste your Lex Web UI JavaScript plugin here --> 
+<script src="https://d3dif5lrjaik0z.cloudfront.net/lex-web-ui-loader.js"></script>
+<script>
+    // Point the baseUrl to download the dependencies from the site hosting
+    // the loader and the chatbot UI files
+    // This url should host the JavaScript and CSS files in the dist directory
+    var loaderOpts = {
+      baseUrl: 'https://d3dif5lrjaik0z.cloudfront.net'
+    }
+    // ChatBotUiLoader contains the IframeLoader constructor
+    // Instantiate the loader and pass the loader options
+    var lexWebUiLoader = new ChatBotUiLoader.IframeLoader(loaderOpts);
 
+    // You can override the chatbot UI config by passing a parameter
+    // if the iframe page is hosted on a different site,
+    // you should configure the parentOrigin and iframeOrigin
+    var chatbotUiconfig = {
+      /*ui: {
+        // origin of the parent site where you are including the chatbot UI
+        parentOrigin: 'https://mysite.example.org'
+      },
+      iframe: {
+        // origin hosting the HTML file that will be embedded in the iframe
+        iframeOrigin: 'https://iframe-host.example.org'
+      }*/
+    };
+
+    // load the iframe
+    lexWebUiLoader.load(chatbotUiconfig)
+      .catch(function (error) {
+        console.error('chatbot UI failed to load', error);
+    });
+</script>
 <!-- End of Lex Web UI IFrame Snippet--> 
   
 </body>
